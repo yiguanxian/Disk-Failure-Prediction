@@ -16,3 +16,6 @@ Since 2013, Backblaze has published statistics and insights based on the hard dr
 3.Datasets and meta description:  
 ·You can download SMART logs from:https://www.backblaze.com/b2/hard-drive-test-data.html  
 ·https://en.wikipedia.org/wiki/S.M.A.R.T.  
+
+4.Reference:  
+<<Proactive Prediction of Hard Disk Drive Failure>>  
