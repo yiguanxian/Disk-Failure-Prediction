@@ -1,6 +1,6 @@
 Disk Failure Prediction
 
-1.Background and instructions:
+1.Background and instructions:  
     Various disk failures are not rare in large-scale IDCs and cloud computingenvironments, fortunately, we have S.M.A.R.T. (Self-Monitoring, Analysis, andReporting Technology; often written as SMART) logs collected from computer hard disk drives (HDDs), solid-state drives (SSDs) and eMMC drives that detects and reports on various indicators of drive reliability, with the intent of enabling the anticipation of hardware failures.
 Since 2013, Backblaze has published statistics and insights based on the hard drivesin their data center, as well as the data underlying these reports. In this case study, you can download SMART logs from Backblaze website(https://www.backblaze.com/b2/hard-drive-test-data.html), then design and implement a machine learning based solution to predict the disk failures in daily(output prediction results in each testing day) granularity. The output document should include detailed illustration of the following parts:
 ·The methods or flow of data preprocessing and feature engineering.
