@@ -1,7 +1,7 @@
 # OS:windows
 # python3
 # coding=utf-8
-import os
+import os,re
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -11,7 +11,7 @@ from sklearn.neighbors import KNeighborsClassifier as KNN
 from sklearn.metrics import roc_curve, auc, confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
 
 
-def files_path(dir_path):
+def files_path(dir_name):
     """
     Reading all files' path in directory specified
 
@@ -31,13 +31,15 @@ def data_filter(files_path, features, model):
     for feature in features:
     	columns_specified += ["smart_{0}_raw".format(feature)]
     columns_specified = ["date", "model", "failure"] + columns_specified
-    os.makedirs("data_preprocess/")
+    if not os.path.exists("data_preprocess/"):
+    	os.makedirs("data_preprocess/")
     for path in files_path:
+	t = re.split(r'/', path)
         datadf = pd.read_csv(path)
         data_model = datadf[datadf.model == model]
         data_model = data_model.set_index('serial_number')
         data_model = data_model[columns_specified]
-        data_model.to_csv('data_preprocess/%s' % path[18:])
+        data_model.to_csv('data_preprocess/%s' % t[-1])
 
 
 def creat_dataset(nday, features):
@@ -126,15 +128,15 @@ def eval_knn(features, k, kfold=10, path_dataset="dataset.csv"):
 
 
 def main():
-	# 1.特征选择，型号选择
+    # 1.特征选择，型号选择
     features = [5, 9, 187, 188, 193, 194, 197, 198, 241, 242]
     model = "ST4000DM000"
-	# 2.数据过滤:过滤出指定特征和型号
-	#filespath = files_path("data/")
-	#data_filter(filespath, features, model)
-	# 3.创建数据集：a.取raw数据b.故障回溯采正样本c.平衡数据集采负样本d.规范化输入
-	#creat_dataset(nday=10, features=features)
-	# 4.使用KNN模型预测硬盘故障并评估效果
+    # 2.数据过滤:过滤出指定特征和型号
+    #filespath = files_path("data/")
+    #data_filter(filespath, features, model)
+    # 3.创建数据集：a.取raw数据b.故障回溯采正样本c.平衡数据集采负样本d.规范化输入
+    #creat_dataset(nday=10, features=features)
+    # 4.使用KNN模型预测硬盘故障并评估效果
     eval_knn(features=features,k=2)
 
 
