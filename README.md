@@ -18,4 +18,14 @@ Since 2013, Backblaze has published statistics and insights based on the hard dr
 ·https://en.wikipedia.org/wiki/S.M.A.R.T.  
 
 4.Reference:  
-Proactive Prediction of Hard Disk Drive Failure
+Proactive Prediction of Hard Disk Drive Failure  
+
+Now the folder structure under data folder is sth. like:
+.
+├─data
+│  ├─data_Q1_2018
+│  ├─data_Q2_2018
+│  ├─data_Q3_2018
+│  └─data_Q4_2018
+└─dataset.csv
+└─kNN.py
