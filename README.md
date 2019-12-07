@@ -28,4 +28,4 @@ Now the folder structure under data folder is sth. like:
 │  ├─data_Q3_2018  
 │  └─data_Q4_2018  
 ├─dataset.csv  
-├─kNN.py  
+└─kNN.py  
