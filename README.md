@@ -20,8 +20,8 @@ Since 2013, Backblaze has published statistics and insights based on the hard dr
 4.Reference:  
 Proactive Prediction of Hard Disk Drive Failure  
 
-Now the folder structure under data folder is sth. like:
-.  
+Now the folder structure under data folder is sth. like:  
+.    
 ├─data  
 │  ├─data_Q1_2018  
 │  ├─data_Q2_2018  
