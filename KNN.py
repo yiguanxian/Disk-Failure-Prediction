@@ -41,7 +41,7 @@ def data_filter(files_path, features, model):
         data_model = data_model[columns_specified]
         data_model.to_csv('data_preprocess/%s' % t[-1])
 
-
+# 作者原来的代码得到的数据集dataset.csv是不对的，因为第52行的倒序对于第63行没有作用
 def creat_dataset(nday, features):
     filespath = files_path('data_preprocess/')
     columns_specified = []
@@ -49,7 +49,9 @@ def creat_dataset(nday, features):
     	columns_specified += ["smart_{0}_raw".format(feature)]
     columns_specified = ["serial_number", "date", "model", "failure"] + columns_specified
     sample_data = pd.DataFrame(columns=columns_specified)
-    for i, path in enumerate(filespath[::-1]):
+#     for i, path in enumerate(filespath[::-1]):
+    filespath.reverse()
+    for i, path in enumerate(filespath):
         df = pd.read_csv(path)
 
         Negative = df[df['failure'] == 1]
@@ -58,7 +60,7 @@ def creat_dataset(nday, features):
 
         if i < len(filespath)-nday:
             for j in range(nday-1):
-                df_next = pd.read_csv(filespath[i+j+1])
+                df_next = pd.read_csv(filespath[i+j+1]) #如果上面不修改，可以修改这句为df_next = pd.read_csv(filespath[-(i+j+1)])
                 for s_num in np.array(Negative['serial_number']):
                     df_next.loc[df_next.serial_number == s_num, 'failure'] = 1
                     Negative_next = df_next[df_next.serial_number == s_num]
